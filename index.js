@@ -12,6 +12,10 @@ client.on('messageCreate', message => {
 	});
 });
 
+client.on('interactionCreate', (interaction) => {
+	interaction.reply('PONG Boys!!');
+});
+
 client.once(Events.ClientReady, readyClient => {
 	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
 });
