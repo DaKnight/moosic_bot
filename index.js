@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const fs = require("node:fs");
 const path = require("node:path");
-const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
+const { Client, Collection, Events, GatewayIntentBits, Message } = require('discord.js');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
@@ -28,6 +28,11 @@ for (const folder of commandFolders) {
 
 client.once(Events.ClientReady, readyClient => {
 	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
+});
+
+client.on('messageCreate', (msg) => {
+	if(msg.author.bot) return;
+	msg.reply('Hi from Deepak bot !!');
 });
 
 client.on(Events.InteractionCreate, async interaction => {
